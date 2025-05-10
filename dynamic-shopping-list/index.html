@@ -39,6 +39,7 @@
 
             const shoppingItemName = document.createElement("span");
             shoppingItemName.textContent = inputCollector.value;
+            inputCollector.value = "";
             shoppingItem.appendChild(shoppingItemName)
 
             const shoppingItemDeleteButton = document.createElement("button");
@@ -49,6 +50,7 @@
             });
 
             shoppingList.appendChild(shoppingItem);
+            inputCollector.focus();
         });
     </script>
   </body>
