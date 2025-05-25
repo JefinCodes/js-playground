@@ -2,6 +2,11 @@ function playGame(){
     let computerScore = 0;
     let userScore = 0;
     let totalPoints = 5;
+    choiceDisplay.textContent = "";
+    statDisplay.textContent = "";
+    resultDisplay.textContent = "";
+    userScoreDisplay.textContent = userScore;
+    computerScoreDisplay.textContent = computerScore;
     const rockBtn = document.querySelector("#rock-btn");
     const paperBtn = document.querySelector("#paper-btn");
     const scissorsBtn = document.querySelector("#scissors-btn");
@@ -55,8 +60,6 @@ function playGame(){
         userScoreDisplay.textContent = userScore;
         computerScoreDisplay.textContent = computerScore;
         if(userScore == totalPoints || computerScore == totalPoints){
-            console.log("Final Scoreboard");
-            console.log(`Your points : ${userScore} Computer points : ${computerScore}`);
             if(userScore > computerScore){
                 resultDisplay.textContent = "You won";
             }
@@ -66,6 +69,7 @@ function playGame(){
             rockBtn.removeEventListener('click', rockHandler);
             paperBtn.removeEventListener('click', paperHandler);
             scissorsBtn.removeEventListener('click', scissorsHandler);
+            document.querySelector("#total-points").focus();
             return;
         }
     }
@@ -73,6 +77,11 @@ function playGame(){
     if(Number(document.querySelector("#total-points").value)){
         totalPoints = Number(document.querySelector("#total-points").value);
     }
+
+    document.querySelector("#total-points").value = "";
+
+    instruction1Display.textContent = `Game started for ${totalPoints} points`;
+    instruction2Display.textContent = `Select you choice`;
 
     const rockHandler = () => playRound("rock", getComputerChoice());
     const paperHandler = () => playRound("paper", getComputerChoice());
@@ -83,10 +92,13 @@ function playGame(){
     scissorsBtn.addEventListener('click', scissorsHandler);
 }
 
+const instruction1Display = document.querySelector("#instruction1");
+const instruction2Display = document.querySelector("#instruction2");
 const choiceDisplay = document.querySelector("#choices");
 const statDisplay = document.querySelector("#stats");
 const userScoreDisplay = document.querySelector("#user-score");
 const computerScoreDisplay = document.querySelector("#computer-score");
 const resultDisplay = document.querySelector("#result");
 const startBtn = document.querySelector("#start");
+document.querySelector("#total-points").focus();
 startBtn.addEventListener('click', playGame);
