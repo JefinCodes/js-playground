@@ -1,4 +1,5 @@
 function playGame(){
+    startBtn.disabled = true;
     let computerScore = 0;
     let userScore = 0;
     let totalPoints = 5;
@@ -69,6 +70,7 @@ function playGame(){
                 resultDisplay.textContent = `Computer wins`;
             }
             inputTotalPoints.focus();
+            startBtn.disabled = false;
         }
     }
 
