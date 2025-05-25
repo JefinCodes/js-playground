@@ -1,8 +1,10 @@
 function playGame(){
     let computerScore = 0;
     let userScore = 0;
-    let computerChoice;
-    let userChoice;
+    let totalPoints = 5;
+    const rockBtn = document.querySelector("#rock-btn");
+    const paperBtn = document.querySelector("#paper-btn");
+    const scissorsBtn = document.querySelector("#scissors-btn");
 
     function getComputerChoice(){
         let randomValue = Math.random();
@@ -15,66 +17,76 @@ function playGame(){
         return "scissors";
     }
 
-    function getUserChoice(){
-        return prompt("Enter your choice");
-    }
-
     function playRound(userChoice, computerChoice){
-        console.log(`You chooses : ${userChoice.toLowerCase()} Computer chooses : ${computerChoice.toLowerCase()}`);
+        choiceDisplay.textContent = `You chooses : ${userChoice.toLowerCase()} | Computer chooses : ${computerChoice.toLowerCase()}`;
         if(userChoice.toLowerCase() == "rock" && computerChoice.toLowerCase() == "rock"){
-            console.log("No points");
+            statDisplay.textContent = "No points";
         }
         else if(userChoice.toLowerCase() == "rock" && computerChoice.toLowerCase() == "paper"){
-            console.log("Computer scores");
+            statDisplay.textContent = "Computer scores";
             computerScore++;
         }
         else if(userChoice.toLowerCase() == "rock" && computerChoice.toLowerCase() == "scissors"){
-            console.log("You scores");
+            statDisplay.textContent = "You scores";
             userScore++;
         }
         else if(userChoice.toLowerCase() == "paper" && computerChoice.toLowerCase() == "rock"){
-            console.log("You scores");
+            statDisplay.textContent = "You scores";
             userScore++;
         }
         else if(userChoice.toLowerCase() == "paper" && computerChoice.toLowerCase() == "paper"){
-            console.log("No points");
+            statDisplay.textContent = "No points";
         }
         else if(userChoice.toLowerCase() == "paper" && computerChoice.toLowerCase() == "scissors"){
-            console.log("Computer scores");
+            statDisplay.textContent = "Computer scores";
             computerScore++;
         }
         else if(userChoice.toLowerCase() == "scissors" && computerChoice.toLowerCase() == "rock"){
-            console.log("Computer scores");
+            statDisplay.textContent = "Computer scores";
             computerScore++;
         }
         else if(userChoice.toLowerCase() == "scissors" && computerChoice.toLowerCase() == "paper"){
-            console.log("You scores");
+            statDisplay.textContent = "You scores";
             userScore++;
         }
         else if(userChoice.toLowerCase() == "scissors" && computerChoice.toLowerCase() == "scissors"){
-            console.log("No points");
+            statDisplay.textContent = "No points";
         }
-        console.log(`Your points : ${userScore} Computer points : ${computerScore}`);
+        userScoreDisplay.textContent = userScore;
+        computerScoreDisplay.textContent = computerScore;
+        if(userScore == totalPoints || computerScore == totalPoints){
+            console.log("Final Scoreboard");
+            console.log(`Your points : ${userScore} Computer points : ${computerScore}`);
+            if(userScore > computerScore){
+                resultDisplay.textContent = "You won";
+            }
+            else{
+                resultDisplay.textContent = "Computer wins";
+            }
+            rockBtn.removeEventListener('click', rockHandler);
+            paperBtn.removeEventListener('click', paperHandler);
+            scissorsBtn.removeEventListener('click', scissorsHandler);
+            return;
+        }
     }
 
-    for(let i = 0; i < 5; i++){
-        computerChoice = getComputerChoice();
-        userChoice = getUserChoice();
-        playRound(userChoice, computerChoice);
+    if(Number(document.querySelector("#total-points").value)){
+        totalPoints = Number(document.querySelector("#total-points").value);
     }
 
-    console.log("Final Scoreboard");
-    console.log(`Your points : ${userScore} Computer points : ${computerScore}`);
-    if(userScore > computerScore){
-        console.log("You won");
-    }
-    else if(userScore == computerScore){
-        console.log("Match tied");
-    }
-    else{
-        console.log("Computer wins");
-    }
+    const rockHandler = () => playRound("rock", getComputerChoice());
+    const paperHandler = () => playRound("paper", getComputerChoice());
+    const scissorsHandler = () => playRound("scissors", getComputerChoice())
 
+    rockBtn.addEventListener('click', rockHandler);
+    paperBtn.addEventListener('click', paperHandler);
+    scissorsBtn.addEventListener('click', scissorsHandler);
 }
 
-playGame();
+const choiceDisplay = document.querySelector("#choices");
+const statDisplay = document.querySelector("#stats");
+const userScoreDisplay = document.querySelector("#user-score");
+const computerScoreDisplay = document.querySelector("#computer-score");
+const resultDisplay = document.querySelector("#result");
+const startBtn = document.querySelector("#start");
+startBtn.addEventListener('click', playGame);
