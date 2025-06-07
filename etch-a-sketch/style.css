@@ -25,6 +25,11 @@ body{
     cursor: pointer;
 }
 
+.menu-button:hover{
+    color: white;
+    background-color: black;
+}
+
 #container{
     border: 1px solid black;
 }
