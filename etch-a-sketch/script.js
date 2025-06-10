@@ -42,7 +42,6 @@ function generateCustomPlayground(numOfRows, numOfColumns){
         row.classList.add('row');
         for(let j = 1; j <= numOfColumns; j++){
             const box = document.createElement('div');
-            box.classList.add('box');
             box.style.width = boxWidth + "px";
             box.style.height = boxHeight + "px";
             box.addEventListener('mouseenter', (event) => {
