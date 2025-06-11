@@ -1,11 +1,16 @@
 let currentBrush = "black";
 
+function getRandomValue(){
+    const min = 0;
+    const max = 100;
+    const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomValue;
+}
+
 function getRandomColour(){
-    min = 0;
-    max = 100;
-    redColourValue = Math.floor(Math.random() * (max - min + 1)) + min;
-    greenColourValue = Math.floor(Math.random() * (max - min + 1)) + min;
-    blueColourValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    const redColourValue = getRandomValue();
+    const greenColourValue = getRandomValue();
+    const blueColourValue = getRandomValue();
     return `rgb(${redColourValue}, ${greenColourValue}, ${blueColourValue})`;
 }
 
@@ -25,7 +30,7 @@ function colourBlock(event){
         }
         else{
             let opacityInString = event.target.style.opacity;
-            let opacityInFloat = parseFloat(opacityInString)
+            let opacityInFloat = parseFloat(opacityInString);
             opacityInFloat += 0.1;
             opacityInString = opacityInFloat.toString();
             event.target.style.opacity = opacityInString;
@@ -39,8 +44,8 @@ function colourBlock(event){
 
 function generateCustomPlayground(numOfRows, numOfColumns){
     container.innerHTML = '';
-    boxWidth = 640 / numOfColumns;
-    boxHeight = 640 / numOfRows;
+    const boxWidth = 640 / numOfColumns;
+    const boxHeight = 640 / numOfRows;
     for(let i = 1; i <= numOfRows; i++){
         const row = document.createElement('div');
         row.classList.add('row');
@@ -57,10 +62,10 @@ function generateCustomPlayground(numOfRows, numOfColumns){
     };
 }
 
-const rainbowBrushButton = document.querySelector('#rainbow-brush-button')
-const blackBrushButton = document.querySelector('#black-brush-button')
-const shadeBrushButton = document.querySelector('#shade-brush-button')
-const eraserButton = document.querySelector('#eraser-button')
+const rainbowBrushButton = document.querySelector('#rainbow-brush-button');
+const blackBrushButton = document.querySelector('#black-brush-button');
+const shadeBrushButton = document.querySelector('#shade-brush-button');
+const eraserButton = document.querySelector('#eraser-button');
 
 rainbowBrushButton.addEventListener('click', () => {
     currentBrush = "rainbow";
@@ -79,7 +84,7 @@ eraserButton.addEventListener('click', () => {
 })
 
 const container = document.querySelector('#container');
-const generateCustomPlaygroundButton = document.querySelector('#generate-custom-playground-button')
+const generateCustomPlaygroundButton = document.querySelector('#generate-custom-playground-button');
 
 generateCustomPlayground(16, 16);
 
