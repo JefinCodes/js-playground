@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: space-around;
+}
+
+#menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+}
+
+.menu-button{
+    font-size: 20px;
+    text-align: center;
+    width: 300px;
+    padding: 10px 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu-button:hover{
+    color: white;
+    background-color: black;
+}
+
+#container{
+    border: 1px solid black;
+}
+
+.row{
+    display: flex;
+}
