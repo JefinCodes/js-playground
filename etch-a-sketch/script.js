@@ -31,6 +31,10 @@ function colourBlock(event){
             event.target.style.opacity = opacityInString;
         }
     }
+    else if(currentBrush == "eraser"){
+        event.target.style.backgroundColor = "rgb(0, 0, 0)";
+        event.target.style.opacity = "0";
+    }
 }
 
 function generateCustomPlayground(numOfRows, numOfColumns){
@@ -56,6 +60,7 @@ function generateCustomPlayground(numOfRows, numOfColumns){
 const rainbowBrushButton = document.querySelector('#rainbow-brush-button')
 const blackBrushButton = document.querySelector('#black-brush-button')
 const shadeBrushButton = document.querySelector('#shade-brush-button')
+const eraserButton = document.querySelector('#eraser-button')
 
 rainbowBrushButton.addEventListener('click', () => {
     currentBrush = "rainbow";
@@ -67,6 +72,10 @@ blackBrushButton.addEventListener('click', () => {
 
 shadeBrushButton.addEventListener('click', () => {
     currentBrush = "shade";
+})
+
+eraserButton.addEventListener('click', () => {
+    currentBrush = "eraser";
 })
 
 const container = document.querySelector('#container');
