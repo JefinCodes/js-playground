@@ -26,6 +26,22 @@ body{
     width: 330px;
     height: 100px;
     border: 1px solid black;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.calc-display-top{
+    width: 318px;
+    height: 29px;
+    border: 1px solid black;
+}
+
+.calc-display-bottom{
+    width: 318px;
+    height: 58px;
+    border: 1px solid black;
 }
 
 .calc-keypad{
