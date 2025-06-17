@@ -53,6 +53,14 @@ const multiplyBtn = document.querySelector('#multiply-btn');
 const divideBtn = document.querySelector('#divide-btn');
 const equalsBtn = document.querySelector('#equals-btn');
 
+clearBtn.addEventListener('click', () => {
+    operand1 = "";
+    operator = "";
+    operand2 = "";
+    inputDisplay.textContent = "";
+    resultDisplay.textContent = "";
+});
+
 numericBtns.forEach((numericBtn) => {
     numericBtn.addEventListener('click', (event) => {
         if(operator == ""){
