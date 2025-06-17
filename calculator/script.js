@@ -23,8 +23,8 @@ function divide(num1, num2){
 }
 
 function operate(){
-    const parsedOperand1 = parseInt(operand1);
-    const parsedOperand2 = parseInt(operand2);
+    const parsedOperand1 = parseFloat(operand1);
+    const parsedOperand2 = parseFloat(operand2);
     let result;
     if(operator == "addition"){
         result = add(parsedOperand1, parsedOperand2);
@@ -66,38 +66,64 @@ numericBtns.forEach((numericBtn) => {
     });
 });
 
+function handleChainedOperation(){
+    const result = operate();
+    operand1 = String(result);
+    operator = "";
+    operand2 = "";
+}
+
 addBtn.addEventListener('click', () => {
+    if(operand2 != ""){
+        handleChainedOperation();
+    }
     operator = "addition";
     if(operand1 != ""){
         inputDisplay.textContent = operand1 + " + ";
+        resultDisplay.textContent = "";
     }
 });
 subtractBtn.addEventListener('click', () => {
+    if(operand2 != ""){
+        handleChainedOperation();
+    }
     operator = "subtraction";
     if(operand1 != ""){
         inputDisplay.textContent = operand1;
         inputDisplay.innerHTML += " &minus; ";
+        resultDisplay.textContent = "";
     }
 });
 multiplyBtn.addEventListener('click', () => {
+    if(operand2 != ""){
+        handleChainedOperation();
+    }
     operator = "multiplication";
     if(operand1 != ""){
         inputDisplay.textContent = operand1;
         inputDisplay.innerHTML += " &times; ";
+        resultDisplay.textContent = "";
     }
 });
 divideBtn.addEventListener('click', () => {
+    if(operand2 != ""){
+        handleChainedOperation();
+    }
     operator = "division";
     if(operand1 != ""){
         inputDisplay.textContent = operand1;
         inputDisplay.innerHTML += " &divide; ";
+        resultDisplay.textContent = "";
     }
 });
 
 equalsBtn.addEventListener('click', () => {
-    if(operand2 != ""){
+    if(operand1 != "" && operand2 != ""){
         inputDisplay.textContent += operand2;
+        const result = operate();
+        resultDisplay.textContent = result;
+        operand1 = String(result);
+        operator = "";
+        operand2 = "";
     }
-    const result = operate();
-    resultDisplay.textContent = result;
 });
