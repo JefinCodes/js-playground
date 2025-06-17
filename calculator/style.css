@@ -32,13 +32,13 @@ body{
     gap: 1px;
 }
 
-.calc-display-top{
+.calc-display-input{
     width: 318px;
     height: 29px;
     border: 1px solid black;
 }
 
-.calc-display-bottom{
+.calc-display-result{
     width: 318px;
     height: 58px;
     border: 1px solid black;
