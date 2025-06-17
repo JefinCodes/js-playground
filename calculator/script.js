@@ -89,6 +89,21 @@ numericBtns.forEach((numericBtn) => {
     });
 });
 
+fullstopBtn.addEventListener('click', (event) => {
+    if(operator == ""){
+        if(!(operand1.includes("."))){
+            operand1 += event.target.textContent.trim();
+            resultDisplay.textContent = operand1;
+        }
+    }
+    else{
+        if(!(operand2.includes("."))){
+            operand2 += event.target.textContent.trim();
+            resultDisplay.textContent = operand2;
+        }
+    }
+});
+
 function handleChainedOperation(){
     const result = operate();
     operand1 = String(result);
