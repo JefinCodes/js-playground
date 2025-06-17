@@ -61,6 +61,21 @@ clearBtn.addEventListener('click', () => {
     resultDisplay.textContent = "";
 });
 
+deleteBtn.addEventListener('click', () => {
+    if(operator == ""){
+        if(operand1 != ""){
+            operand1 = operand1.slice(0, -1);
+            resultDisplay.textContent = operand1;
+        }
+    }
+    else{
+        if(operand2 != ""){
+            operand2 = operand2.slice(0, -1);
+            resultDisplay.textContent = operand2;
+        }
+    }
+});
+
 numericBtns.forEach((numericBtn) => {
     numericBtn.addEventListener('click', (event) => {
         if(operator == ""){
