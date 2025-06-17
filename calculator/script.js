@@ -57,27 +57,47 @@ numericBtns.forEach((numericBtn) => {
     numericBtn.addEventListener('click', (event) => {
         if(operator == ""){
             operand1 += event.target.textContent.trim();
+            resultDisplay.textContent = operand1;
         }
         else{
             operand2 += event.target.textContent.trim();
+            resultDisplay.textContent = operand2;
         }
     });
 });
 
 addBtn.addEventListener('click', () => {
     operator = "addition";
+    if(operand1 != ""){
+        inputDisplay.textContent = operand1 + " + ";
+    }
 });
 subtractBtn.addEventListener('click', () => {
     operator = "subtraction";
+    if(operand1 != ""){
+        inputDisplay.textContent = operand1;
+        inputDisplay.innerHTML += " &minus; ";
+    }
 });
 multiplyBtn.addEventListener('click', () => {
     operator = "multiplication";
+    if(operand1 != ""){
+        inputDisplay.textContent = operand1;
+        inputDisplay.innerHTML += " &times; ";
+    }
 });
 divideBtn.addEventListener('click', () => {
     operator = "division";
+    if(operand1 != ""){
+        inputDisplay.textContent = operand1;
+        inputDisplay.innerHTML += " &divide; ";
+    }
 });
 
 equalsBtn.addEventListener('click', () => {
+    if(operand2 != ""){
+        inputDisplay.textContent += operand2;
+    }
     const result = operate();
     resultDisplay.textContent = result;
 });
