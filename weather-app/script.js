@@ -1,5 +1,21 @@
+const body = document.querySelector('body');
 const placeField = document.querySelector('#place-field');
 const fetchWeatherBtn = document.querySelector('#fetch-weather-btn');
+
+function getWeatherImage(temp){
+    let imageName;
+    if(temp == -1){
+        imageName = "error";
+    }
+    else if(temp < 25){
+        imageName = "cool";
+    }
+    else{
+        imageName = "sunny";
+    }
+    const imgURL = `./images/${imageName}.jpg`;
+    body.style.backgroundImage = `url(${imgURL})`;
+}
 
 async function fetchWeather(place){
     try{
@@ -7,8 +23,10 @@ async function fetchWeather(place){
         const response = await fetch(url, { mode: 'cors' });
         const jsonResponse = await response.json();
         const temp = jsonResponse["days"][0]["temp"];
+        getWeatherImage(temp);
         console.log(temp);
     } catch(err){
+        getWeatherImage(-1);
         console.log(err);
     }
 }
